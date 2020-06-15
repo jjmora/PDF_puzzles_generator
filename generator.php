@@ -1,7 +1,6 @@
 <?php
        
 $numbOfPuzzles = $_POST['numbOfPuzzles'];
-    // $numbOfPuzzles = 6;
 $puzzleType = $_POST['puzzleType'];
 $extension = $_POST['extension'];
 $solutions = $_POST['solutions'];
@@ -9,10 +8,10 @@ $pageSize = $_POST['pageSize'];
 $customTxtSize = 14;
 $puzzleSrc = $_POST['puzzleSrc'];
 $symmetry = $_POST['symmetry'];
-$url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/easy';
-$solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/easy/solutions';
+$url = '';
+$solUrl = '';
 
-if($symmetry == "no"){
+if($symmetry == "no" && $puzzleType == "sudoku"){
     switch($puzzleSrc){
         case 'easy':
             $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/easy';
@@ -32,7 +31,7 @@ if($symmetry == "no"){
             $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/super/solutions';
             break;
         }
-} else {
+} elseif($symmetry == "yes" && $puzzleType == "sudoku") {
     switch($puzzleSrc){
         case 'easy':
             $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/symmetry_easy';
@@ -52,18 +51,55 @@ if($symmetry == "no"){
             $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/symmetry_super/solutions';
             break;
         }
-}
-
+} elseif($symmetry == "no" && $puzzleType == "sudokuKiller") {
+    switch($puzzleSrc){
+        case 'easy':
+            $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_easy';
+            $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_easy/solutions';
+            break;
+        case 'medium':
+            $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_medium';
+            $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_medium/solutions';
+            break;
+        case 'hard':
+            $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_hard';
+            $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_hard/solutions';
+            break;
+            
+        case 'super':
+            $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_super';
+            $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_super/solutions';
+            break;
+        }
+    } elseif($symmetry == "yes" && $puzzleType == "sudokuKiller") {
+        switch($puzzleSrc){
+            case 'easy':
+                $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_symmetry_easy';
+                $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_symmetry_easy/solutions';
+                break;
+            case 'medium':
+                $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_symmetry_medium';
+                $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_symmetry_medium/solutions';
+                break;
+            case 'hard':
+                $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_symmetry_hard';
+                $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_symmetry_hard/solutions';
+                break;
+                
+            case 'super':
+                $url = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_symmetry_super';
+                $solUrl = 'https://www.shirtvintage.com/jjm/PDF_puzzle_generator/img/sudoku/killer_symmetry_super/solutions';
+                break;
+            }
+        }
 
 //GENERATIN RANDOM ARRAY
     $totOfNb = 1000;
-    // $nbOfValues = $numbOfPuzzles;
 
     $m = 0;
     $array = [];
     for($m = 0; $m < $totOfNb; $m++){
         $array[$m] = $m +1;
-        // echo $array[$m];
     };
 
     //Randomizing the array
@@ -72,25 +108,20 @@ if($symmetry == "no"){
     for($n = $max -1; $n >= 0; $n--){
         $rndNb = rand(0,100) / 100;
         $h = floor(number_format($rndNb * $n,0));
-        // echo "numero: ".$j."<br />";
         $temp = $array[$n];
         $array[$n] = $array[$h];
         $array[$h] = $temp;
-        // echo "numero: ".$array[$i]."<br />";
     }
 
 
     $k = 0;
     $nbOfValues = $numbOfPuzzles;
-    // $nbOfValues = 100;
     //Putting values into the final array
     $finalArray = [];
     for($k = 0; $k < $nbOfValues; $k++){
         $finalArray[$k] = $array[$k];
     }
-    // echo "<br>FINAL ARRAY<br>";
-    // var_dump($finalArray);
-    // echo "<br><br>";
+
 //Load FPDF
 require('fpdf.php');
 
@@ -135,13 +166,9 @@ $pdf->AddPage();
 $pdf->SetFont('Arial','B',14);
 
 
-//CHECK FOR ERRORS
-    // $checkForImg = $url."/$numbOfPuzzles.png";
-    // $exists = isset($checkForImg);
-
 //BLOQUE GENERADOR A4    
 
-//TAMAÑO DE PAGINA
+//PAGE SIZE SWITCH
 switch($pageSize){
     case 'a4':
         $imgWidth = 100;
@@ -170,23 +197,13 @@ switch($pageSize){
         break;
 }     
 
-    //Background 
-    $bgX = 42.5;
-    $bgSize = 130;
- 
+
     
     //BLOQUE GENERADOR PUZZLES
-
-    // echo "<br>FINAL ARRAY<br>";
-    // var_dump($finalArray);
-    // echo "<br><br>";
 
     for($i=0; $i < $numbOfPuzzles; $i = $i+2){ 
         $q = $finalArray[$i];
         $qq = $finalArray[$i+1];
-
-        // echo "<br>P = ".$i.", Q = ".$q.", ";
-        // echo "P = ".$i.", QQ = ".$qq."<br>";
 
         $puzzleNb1 = $i +1;
         $puzzleNb2 = $i +2;
@@ -198,7 +215,6 @@ switch($pageSize){
         $pdf->Image($url."/$qq.$extension",$img_X,$img2_Y,$imgWidth,$extension);
         $pdf->Ln($txt_Ln2);
         $pdf->Cell(0,10,$puzzleType.' '.$puzzleNb2,0,0,'C');
-
 
         if($i < $numbOfPuzzles - 2){ 
             $pdf->AddPage();
@@ -214,12 +230,8 @@ switch($pageSize){
             $qsol = $finalArray[$isol];
             $qqsol = $finalArray[$isol+1];
 
-            // echo "<br>Psol = ".$isol.", Qsol = ".$qsol.", ";
-            // echo "Psol = ".$isol.", QQsol = ".$qqsol."<br>";
-    
             $puzzleNb1sol = $isol +1;
             $puzzleNb2sol = $isol +2;
-
 
             $pdf->Image($solUrl."/$qsol.$extension",$img_X,$img1_Y,$imgWidth,$extension);
             $pdf->Ln($txt_Ln1);

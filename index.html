@@ -32,8 +32,8 @@
 
             <label for='puzzleType'>Puzzle Type: </label>
             <select name="puzzleType" id="puzzleType">
-              <option value="Sudoku">Sudoku</option>
-              <option value="SudokuKiller">Sudoku killer</option>
+              <option value="sudoku">Sudoku</option>
+              <option value="sudokuKiller">Sudoku killer</option>
               <!-- <option value="Sikaku">Sikaku</option> -->
             </select>
             <span id="puzzle-type-info"><i  class="fas fa-info-circle"></i></span>
@@ -57,16 +57,6 @@
             <input type="radio" id="symmetryNO" name="symmetry" value="no" checked>
             <label for="no">NO</label>
 
-
-
-
-            <!--
-              <br><br>
-              <div id="URLselector">
-              <label for='url'>Puzzles URL: </label> <br>
-              <input type="url" name="url" id="url">
-            </div> -->
-
             <br><br>
           
             <label for="numbOfPuzzles">Number of Puzzles:</label>
@@ -85,7 +75,6 @@
               <option value="90">90</option>
               <option value="100">100</option>
             </select>
-
                       
           <br><br>
           
@@ -98,17 +87,12 @@
           <br><br> 
 
             <label for='solutions'>Solutions: </label> 
-            <input type="radio" id="solutionsYES" name="solutions" value="yes" onchange="hideURLsolutions()" >
+            <input type="radio" id="solutionsYES" name="solutions" value="yes">
             <label for="yes">YES</label>
-            <input type="radio" id="solutionsNO" name="solutions" value="no" onchange="hideURLsolutions()" checked>
+            <input type="radio" id="solutionsNO" name="solutions" value="no" checked>
             <label for="no">NO</label>
 
           <br><br>
-            <!-- <div id="URLselectorSolutions" class="hideElement">
-              <label for='solUrl'>Solutions URL: </label> <br>
-              <input type="solUrl" name="solUrl" id="solUrl">
-            </div> -->
-
 
           <br>
             <label>Footer: </label> 
@@ -117,32 +101,10 @@
             <input type="radio" name="footer_Y_N" id='footerNO' value="no" checked>
             <label for="no">NO</label>
           
-          <br>
-    <!-- <div id="footerSelection" class="hideElement">
-              <label for='cPageNb'>Custom Page Number: </label>
-              <input type="radio" name="cPageNb" value="yes">
-              <label for="yes">YES</label>
-              <input type="radio" name="cPageNb" value="no" checked>
-              <label for="no">NO</label>
-             -->
-            <!-- <br><br>
-              <section class="customPages">
-                <label>Initial Page: </label>
-                <input type="number" id="initPage" name="initPageCustom">
 
-                <label>Total of Pages: </label>
-                <input type="number" id="totOfPages" name="totalPagesCustom">
-              </section> 
+          <br><br>
 
-            <br><br>
-          </div>-->
 
-          <!-- <br>
-
-            <label for='customIMG'>Background Image URL: </label> <br>
-            <input type="customIMG" name="customIMG" id="customIMG">-->
-
-            <br><br>
             <!-- BUTTON -->
             <input type="submit" class="myButton">
             <input type="reset" class="myButton" value="Reset" />
@@ -150,18 +112,14 @@
           </form>
         </div>
 
-        <!--IMAGE SECTION-->
-        <!-- <div class="imgContainer">
-          <img src="img/1.png" alt="sudoku puzzle" width="200" height="200">
-        </div> -->
     </section>
     
     <h2><a href="https://www.japanpuzzles.com">www.japanpuzzles.com</a></h2>
     <h2><a href="https://www.juanjosemora.es">www.juanjosemora.es</a></h2>
     
 
-  <script src="random.js"></script>
-  <script src="index.js"></script>
+    <script src="random.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
