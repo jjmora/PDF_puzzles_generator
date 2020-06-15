@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Puzzle PDF Maker</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>
+    </head>
+
+
+<html>
+<body>
+  <h1>PDF puzzle game generator</h1>
+    <section class="form_wrap">
+      
+        <!--FORM SECTION-->
+        <div class="form_box">
+          <form action="generator.php" method="post">
+
+
+            <label for="pageSize">Page Size:</label>
+            <select name="pageSize" id="pageSize" onchange="pageSizeFunction()">
+              <option value="a4">A4</option>
+              <option value="a5">A5</option>
+              <option value="6x9">6 x 9 in</option>
+            </select>
+            <span id="puzzle-size-text">Puzzle image size = 100 mm</span>
+
+          <br><br>
+
+            <label for='puzzleType'>Puzzle Type: </label>
+            <select name="puzzleType" id="puzzleType">
+              <option value="Sudoku">Sudoku</option>
+              <!-- <option value="Sikaku">Sikaku</option> -->
+            </select>
+            <span id="puzzle-type-info"><i  class="fas fa-info-circle"></i></span>
+
+            <label for='puzzleSrc'>Level: </label>
+            <select name="puzzleSrc" id="puzzleSrc">
+              <!-- <option value="custom" id="custom">Custom URL</option> -->
+              <option value="easy" id="easy" selected>Easy</option>
+              <option value="medium" id="medium">Medium</option>
+              <option value="hard" id="hard">Hard</option>
+              <option value="super" id="super">Super</option>
+
+            </select>
+            <span id="span-info" ><i class="fas fa-info-circle"></i></span>
+
+            <br><br>
+
+            <label for="symmetry">Symmetry: </label> 
+            <input type="radio" id="symmetryYES" name="symmetry" value="yes">
+            <label for="yes">YES</label>
+            <input type="radio" id="symmetryNO" name="symmetry" value="no" checked>
+            <label for="no">NO</label>
+
+
+
+
+            <!--
+              <br><br>
+              <div id="URLselector">
+              <label for='url'>Puzzles URL: </label> <br>
+              <input type="url" name="url" id="url">
+            </div> -->
+
+            <br><br>
+          
+            <label for="numbOfPuzzles">Number of Puzzles:</label>
+            <select name="numbOfPuzzles" id="numbOfPuzzles">
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8">8</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+              <option value="60">60</option>
+              <option value="70">70</option>
+              <option value="80">80</option>
+              <option value="90">90</option>
+              <option value="100">100</option>
+            </select>
+
+                      
+          <br><br>
+          
+            <label for='extension'>File Extension: </label> 
+            <input type="radio" id="jpg" name="extension" value="jpg" checked>
+            <label for="female">JPG</label>
+            <input type="radio" id="png" name="extension" value="png" >
+            <label for="png">PNG</label>
+
+          <br><br> 
+
+            <label for='solutions'>Solutions: </label> 
+            <input type="radio" id="solutionsYES" name="solutions" value="yes" onchange="hideURLsolutions()" >
+            <label for="yes">YES</label>
+            <input type="radio" id="solutionsNO" name="solutions" value="no" onchange="hideURLsolutions()" checked>
+            <label for="no">NO</label>
+
+          <br><br>
+            <!-- <div id="URLselectorSolutions" class="hideElement">
+              <label for='solUrl'>Solutions URL: </label> <br>
+              <input type="solUrl" name="solUrl" id="solUrl">
+            </div> -->
+
+
+          <br>
+            <label>Footer: </label> 
+            <input type="radio" name="footer_Y_N" id='footerYES' value="yes">
+            <label for="yes">YES</label>
+            <input type="radio" name="footer_Y_N" id='footerNO' value="no" checked>
+            <label for="no">NO</label>
+          
+          <br>
+    <!-- <div id="footerSelection" class="hideElement">
+              <label for='cPageNb'>Custom Page Number: </label>
+              <input type="radio" name="cPageNb" value="yes">
+              <label for="yes">YES</label>
+              <input type="radio" name="cPageNb" value="no" checked>
+              <label for="no">NO</label>
+             -->
+            <!-- <br><br>
+              <section class="customPages">
+                <label>Initial Page: </label>
+                <input type="number" id="initPage" name="initPageCustom">
+
+                <label>Total of Pages: </label>
+                <input type="number" id="totOfPages" name="totalPagesCustom">
+              </section> 
+
+            <br><br>
+          </div>-->
+
+          <!-- <br>
+
+            <label for='customIMG'>Background Image URL: </label> <br>
+            <input type="customIMG" name="customIMG" id="customIMG">-->
+
+            <br><br>
+            <!-- BUTTON -->
+            <input type="submit" class="myButton">
+            <input type="reset" class="myButton" value="Reset" />
+
+          </form>
+        </div>
+
+        <!--IMAGE SECTION-->
+        <!-- <div class="imgContainer">
+          <img src="img/1.png" alt="sudoku puzzle" width="200" height="200">
+        </div> -->
+    </section>
+    
+    <h2><a href="https://www.japanpuzzles.com">www.japanpuzzles.com</a></h2>
+    <h2><a href="https://www.juanjosemora.es">www.juanjosemora.es</a></h2>
+    
+
+  <script src="random.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
